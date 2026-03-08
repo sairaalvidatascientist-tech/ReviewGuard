@@ -1,0 +1,272 @@
+/* --- CSS Reset & Variables --- */
+:root {
+    --bg-primary: #0f172a; /* Deep slate */
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent: #3b82f6; /* Blue */
+    --accent-hover: #2563eb;
+    --accent-glow: rgba(59, 130, 246, 0.6);
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --card-border: rgba(255, 255, 255, 0.1);
+    
+    --success-color: #10b981;
+    --success-glow: rgba(16, 185, 129, 0.4);
+    --danger-color: #ef4444;
+    --danger-glow: rgba(239, 68, 68, 0.4);
+    
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* #4. Smooth Scroll Behavior */
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+}
+
+/* --- #8. Animated Gradient Background --- */
+.background-gradient {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+    background-size: 300% 300%;
+    animation: gradientShift 15s ease infinite;
+    z-index: -2;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.blob-wrapper {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    overflow: hidden; pointer-events: none; z-index: -1;
+}
+
+.blob {
+    position: absolute; width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(0,0,0,0) 70%);
+    border-radius: 50%; top: -100px; left: -100px;
+    animation: floatBlob 10s ease-in-out infinite alternate;
+}
+
+.blob2 {
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(0,0,0,0) 70%);
+    top: auto; bottom: -200px; left: auto; right: -100px;
+    animation-delay: -5s;
+}
+
+@keyframes floatBlob {
+    0% { transform: translateY(0) scale(1); }
+    100% { transform: translateY(50px) scale(1.1); }
+}
+
+/* --- Layout & Typography --- */
+.container {
+    max-width: 1200px; margin: 0 auto; padding: 0 2rem;
+}
+
+h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 700; }
+a { text-decoration: none; color: inherit; }
+
+/* --- #1. Smooth Page Fade Transition --- */
+.intro-animation {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Header Branding --- */
+.top-branding {
+    padding: 2rem 0; border-bottom: 1px solid var(--card-border);
+    backdrop-filter: blur(10px);
+    background: rgba(15, 23, 42, 0.5);
+    position: sticky; top: 0; z-index: 100;
+}
+
+.branding-container {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+
+.developer-info h1 { font-size: 1.5rem; color: var(--accent); }
+.developer-info p { font-size: 0.9rem; color: var(--text-secondary); }
+
+.project-title h2 { font-size: 1.2rem; }
+.project-title p { font-size: 0.85rem; color: var(--text-secondary); }
+
+/* --- Forms & Buttons --- */
+.glass-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.hero {
+    text-align: center; margin: 4rem auto; max-width: 800px;
+}
+
+.logo { font-size: 3rem; margin-bottom: 0.5rem; letter-spacing: -1px; }
+.logo .highlight { color: var(--accent); }
+
+/* --- #5. Typing Animation Container --- */
+.typing-container {
+    font-size: 1.2rem; font-weight: 400; color: var(--text-secondary);
+    min-height: 30px; margin-bottom: 2rem;
+}
+.cursor { animation: blink 1s step-end infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.analysis-box {
+    display: flex; flex-direction: column; gap: 1rem; align-items: center;
+}
+
+textarea {
+    width: 100%; height: 150px; padding: 1rem;
+    background: rgba(15, 23, 42, 0.6); border: 1px solid var(--card-border);
+    border-radius: 12px; color: var(--text-primary); font-family: var(--font-body);
+    font-size: 1rem; resize: vertical; transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+textarea:focus {
+    outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+/* --- #2. Button Hover Glow Effect --- */
+.glow-btn {
+    padding: 1rem 2rem; font-size: 1.1rem; font-family: var(--font-heading);
+    font-weight: 700; color: white; background: var(--accent);
+    border: none; border-radius: 50px; cursor: pointer;
+    transition: all 0.3s ease; box-shadow: 0 4px 15px var(--accent-glow);
+    display: inline-flex; align-items: center; gap: 0.5rem;
+}
+
+.glow-btn:hover {
+    background: var(--accent-hover); transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--accent-glow);
+}
+
+.glow-btn:active { transform: translateY(0); }
+
+/* --- Results Area & Processing --- */
+.hidden { display: none !important; }
+
+.results-area {
+    margin-top: 2rem; width: 100%; border-top: 1px solid var(--card-border); padding-top: 2rem;
+}
+
+/* --- #6. Loading Spinner & #10. Progress Bar --- */
+.progress-container { width: 100%; text-align: left; }
+.loading-text { font-size: 1rem; color: var(--text-secondary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+.progress-bar { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 4px; overflow: hidden; }
+.progress-fill { width: 0%; height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.1s linear; }
+
+/* --- #7. Result Highlight Animation --- */
+.result-card {
+    text-align: left; background: rgba(0,0,0,0.2); border-radius: 12px;
+    padding: 1.5rem; border-left: 5px solid transparent;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.95); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.result-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+.result-header i { font-size: 1.5rem; }
+.result-header h3 { font-size: 1.5rem; }
+
+.result-genuine { border-left-color: var(--success-color); box-shadow: inset 5px 0 20px -10px var(--success-color); }
+.result-genuine .result-header { color: var(--success-color); }
+
+.result-fake { border-left-color: var(--danger-color); box-shadow: inset 5px 0 20px -10px var(--danger-color); }
+.result-fake .result-header { color: var(--danger-color); }
+
+.metrics {
+    margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;
+}
+.metric-badge {
+    background: rgba(255,255,255,0.05); padding: 0.4rem 0.8rem; border-radius: 20px;
+    font-size: 0.85rem; border: 1px solid var(--card-border);
+}
+
+/* --- Information Sections Grid --- */
+.info-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem; margin-bottom: 4rem;
+}
+
+/* --- #3. Card Hover Lift Effect --- */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-lift:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255,255,255,0.2);
+}
+
+.info-card h3 { color: var(--accent); margin-bottom: 1rem; font-size: 1.3rem; }
+.info-card p { color: var(--text-secondary); font-size: 0.95rem; }
+.info-card ul { margin-left: 1.2rem; color: var(--text-secondary); font-size: 0.95rem; }
+.info-card li { margin-bottom: 0.5rem; }
+
+/* --- #9. Icon Hover Bounce Effect --- */
+.card-icon {
+    font-size: 2rem; color: var(--accent); margin-bottom: 1rem;
+    display: inline-block; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.hover-lift:hover .card-icon { transform: scale(1.2) translateY(-5px); }
+
+.architecture-content {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+.arch-box {
+    background: rgba(0,0,0,0.2); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);
+}
+.arch-box h4 { margin-bottom: 0.8rem; color: var(--text-primary); }
+
+.tech-tags {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem;
+}
+.tech-tags span {
+    background: rgba(59, 130, 246, 0.1); color: var(--accent);
+    padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+footer {
+    text-align: center; padding: 2rem; border-top: 1px solid var(--card-border);
+    color: var(--text-secondary); font-size: 0.9rem; background: rgba(15, 23, 42, 0.8);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .branding-container { flex-direction: column; text-align: center; }
+    .project-title { margin-top: 1rem; }
+    .logo { font-size: 2.2rem; }
+}

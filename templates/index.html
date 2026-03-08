@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ReviewGuard - Fake Review Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Background Animation Elements -->
+    <div class="background-gradient"></div>
+    <div class="blob-wrapper">
+        <div class="blob"></div>
+        <div class="blob blob2"></div>
+    </div>
+
+    <!-- Header & Branding -->
+    <header class="top-branding intro-animation">
+        <div class="container branding-container">
+            <div class="developer-info">
+                <h1 class="dev-name">Saira Alvi</h1>
+                <p class="dev-dept">Department of Computer Science</p>
+                <p class="dev-uni">University of Layyah</p>
+            </div>
+            <div class="project-title">
+                <h2>Fake Review Detection System</h2>
+                <p>Using Natural Language Processing and Machine Learning</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container main-content intro-animation" style="animation-delay: 0.2s;">
+        
+        <!-- Hero Section -->
+        <section class="hero glass-card">
+            <h1 class="logo">Review<span class="highlight">Guard</span></h1>
+            <h2 class="typing-container"><span id="typing-text"></span><span class="cursor">|</span></h2>
+            
+            <div class="analysis-box">
+                <textarea id="review-input" placeholder="Paste a product review here to analyze its authenticity..."></textarea>
+                <button id="analyze-btn" class="glow-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i> Analyze Review
+                </button>
+            </div>
+            
+            <!-- Dynamic Results Area -->
+            <div id="results-area" class="results-area hidden">
+                <div class="progress-container" id="progress-container">
+                    <p class="loading-text"><i class="fa-solid fa-circle-notch fa-spin"></i> Analyzing Review...</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+                
+                <div id="result-card" class="result-card hidden">
+                    <div class="result-header">
+                        <i id="result-icon" class="fa-solid fa-shield-halved"></i>
+                        <h3 id="result-title">Result</h3>
+                    </div>
+                    <div class="result-details">
+                        <p id="result-message"></p>
+                        <div class="metrics">
+                            <span class="metric-badge"><i class="fa-solid fa-face-smile"></i> Sentiment: <b id="sentiment-score">0.0</b></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Information Sections Grid -->
+        <div class="info-grid">
+            
+            <!-- Introduction Section -->
+            <section class="info-card glass-card hover-lift">
+                <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+                <h3>Introduction</h3>
+                <p>Online reviews strongly influence customer decisions on e-commerce platforms like Amazon, eBay, and Alibaba. However, many sellers manipulate ratings by posting fake or deceptive reviews. This leads to customers purchasing low-quality products, honest businesses losing customers, and decreased trust in online marketplaces. Our system uses NLP to analyze review text, sentiment patterns, and user behavior to automatically detect suspicious reviews.</p>
+            </section>
+
+            <!-- Problem Statement -->
+            <section class="info-card glass-card hover-lift" style="animation-delay: 0.3s;">
+                <div class="card-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+                <h3>Problem Statement</h3>
+                <p>Manual detection of fake reviews is difficult due to the large volume of daily reviews, realistic-looking fake content, and multiple fake accounts. A machine learning system can detect patterns that humans may miss, providing a scalable and accurate solution.</p>
+            </section>
+
+            <!-- Objectives Section -->
+            <section class="info-card glass-card hover-lift" style="animation-delay: 0.4s;">
+                <div class="card-icon"><i class="fa-solid fa-bullseye"></i></div>
+                <h3>Objectives</h3>
+                <ul>
+                    <li>Automatically identify fake product reviews</li>
+                    <li>Analyze text patterns and sentiment</li>
+                    <li>Detect suspicious reviewer behavior</li>
+                    <li>Provide predictions through a simple web interface</li>
+                </ul>
+            </section>
+
+            <!-- Architecture & Methods -->
+            <section class="info-card glass-card hover-lift" style="grid-column: 1 / -1; animation-delay: 0.5s;">
+                <div class="card-icon"><i class="fa-solid fa-network-wired"></i></div>
+                <h3>System Architecture & Methods</h3>
+                <div class="architecture-content">
+                    <div class="arch-box">
+                        <h4><i class="fa-solid fa-database"></i> 1. Data Collection</h4>
+                        <p>Utilizing datasets such as Amazon Review Dataset and Yelp Fake Review Dataset containing text, ratings, and labels.</p>
+                    </div>
+                    <div class="arch-box">
+                        <h4><i class="fa-solid fa-broom"></i> 2. Preprocessing</h4>
+                        <p>Cleaning text by removing punctuation, stop words, and applying tokenization/lemmatization via NLP libraries (NLTK, spaCy).</p>
+                    </div>
+                    <div class="arch-box">
+                        <h4><i class="fa-solid fa-brain"></i> 3. Detection Methods</h4>
+                        <ul>
+                            <li><b>Pattern Analysis:</b> Repeated phrases & overly positive language.</li>
+                            <li><b>Sentiment Analysis:</b> Evaluating scores via TextBlob.</li>
+                            <li><b>Account Detection:</b> Abnormal reviewing behavior mapping.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Tech Stack & Future -->
+            <section class="info-card glass-card hover-lift" style="animation-delay: 0.6s;">
+                <div class="card-icon"><i class="fa-solid fa-layer-group"></i></div>
+                <h3>Technology Stack</h3>
+                <div class="tech-tags">
+                    <span>Python</span> <span>NLTK</span> <span>spaCy</span> <span>TextBlob</span> <span>scikit-learn</span> <span>Flask</span> <span>Matplotlib</span>
+                </div>
+                <h3 style="margin-top: 1.5rem;">Expected Results</h3>
+                <p>75–90% accuracy in detecting fake reviews with real-time analysis capabilities.</p>
+            </section>
+
+            <section class="info-card glass-card hover-lift" style="animation-delay: 0.7s;">
+                <div class="card-icon"><i class="fa-solid fa-rocket"></i></div>
+                <h3>Future Improvements & Applications</h3>
+                <ul>
+                    <li>Deep learning models & bot detection (e.g., BERT)</li>
+                    <li>Reviewer network analysis</li>
+                    <li>Fake image detection</li>
+                </ul>
+                <p style="margin-top: 1rem;"><b>Applications:</b> E-commerce platforms, product review websites, online marketplaces, and consumer protection agencies.</p>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Fake Review Detection System. Developed by <b>Saira Alvi</b>, Department of Computer Science, University of Layyah.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
