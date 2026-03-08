@@ -1,6 +1,11 @@
 # ReviewGuard
 ReviewGuard
 ReviewGuard is a web application designed to detect and flag potentially fake or suspicious online reviews. It uses natural language processing (NLP) and heuristic rules to analyze the sentiment, length, and content of a review to determine its authenticity.
+## Developer
+
+Developed by Saira Alvi
+Department of Computer Science
+University of 
 
 ## Features
 
@@ -53,6 +58,4 @@ The application uses a heuristic approach (which can be easily replaced or augme
 - Expand the frontend features to support bulk review analysis via file uploads (CSV/JSON).
 - Add support for multiple languages.
 
-## Developer
 
-Developed by Saira Alvi
